@@ -14,15 +14,16 @@ namespace QuestionnaireBack.Service
 
             await base.OnConnectedAsync();
         }
-        public  async Task AddToGroup(string groupName) {
+        public async Task AddToGroup(string groupName)
+        {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
             Console.WriteLine($"User: {Context.ConnectionId} connected to room: {groupName}");
         }
         public async Task SendMessage(QuestionRequest request, string groupName)
         {
             Console.WriteLine("Send Message Confirm");
-            await Clients.Groups(groupName).SendAsync("ReceiveMessage",request.Name, request.Message, request.Rate);
-          
+            await Clients.Groups(groupName).SendAsync("ReceiveMessage", request.Name, request.Message, request.Rate);
+
         }
     }
 }
