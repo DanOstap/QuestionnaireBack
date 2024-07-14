@@ -19,9 +19,12 @@ namespace QuestionnaireBack.Service
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
             Console.WriteLine($"User: {Context.ConnectionId} connected to room: {groupName}");
         }
-        public async Task SendMessage(QuestionRequest request, string groupName)
+        public async Task SendMessage(QuestionRequest request, string groupName,string role)
         {
-            Console.WriteLine("Send Message Confirm");
+            if (role == "hr") {
+                await Clients.Groups(groupName).SendAsync("ReceiveMessage",request.Message, request.Rate);
+
+            }
             await Clients.Groups(groupName).SendAsync("ReceiveMessage", request.Name, request.Message, request.Rate);
 
         }
