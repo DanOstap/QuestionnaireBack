@@ -24,7 +24,7 @@ namespace QuestionnaireBack.Service
                 await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
                 Console.WriteLine($"User: {Context.ConnectionId} connected to room: {groupName}");
             }
-           return "Incorrect User";
+           return "Incorrect User!";
         }
         public async Task SendMessage(QuestionRequest request, string groupName,string role)
         {
